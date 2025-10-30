@@ -527,7 +527,12 @@ class Metadata(MutableMapping):
             "date": "timestamp",       # MOJAP 'date' mapped to DLT 'timestamp'
             "datetime": "timestamp",   # MOJAP 'datetime' mapped to DLT 'timestamp'
             "timestamp(ms)": "timestamp",
-            "timestamp(s)": "timestamp"
+            "timestamp(ns)": "timestamp",
+            "timestamp(s)": "timestamp",
+            "date64":"timestamp",
+            "date32":'date',
+            "bool_":"bool",
+            "bool":"bool"
         }
         # convert each column definition from MOJAP to DLT format
         columns = {}
