@@ -1,4 +1,5 @@
 import pytest
+import mojap_metadata
 from mojap_metadata.metadata.metadata import Metadata
 
 # test 1: basic type conversion from MOJAP to DLT types
@@ -30,8 +31,9 @@ def test_basic_conversion():
     }
 
     # run the conversion and assert the result matches expected output
-    metadata = Metadata.from_dict(input_schema)
-    result = metadata.to_dlt_schema()
+    #metadata = Metadata.from_dict(input_schema)
+    #result = metadata.to_dlt_schema()
+    result = mojap_metadata.Metadata.to_dlt_schema(input_schema)
 
     assert result == expected_output
 
@@ -47,8 +49,9 @@ def test_unknown_type_defaults_to_text(capfd):
     }
 
     # run the conversion and assert the result matches expected output
-    metadata = Metadata.from_dict(input_schema)
-    result = metadata.to_dlt_schema()
+    #metadata = Metadata.from_dict(input_schema)
+    #result = metadata.to_dlt_schema()
+    result = mojap_metadata.Metadata.to_dlt_schema(input_schema)
 
     # assert that the unknown type was defaulted to 'text'
     assert result["tables"]["test_table"]["columns"]["custom_field"]["type"] == "text"
@@ -68,9 +71,10 @@ def test_preserves_extra_fields():
         ]
     }
 
-    # run the conversion and assert the result matches expected output
-    metadata = Metadata.from_dict(input_schema)
-    result = metadata.to_dlt_schema()
+    # run the conversion
+    #metadata = Metadata.from_dict(input_schema)
+    #result = metadata.to_dlt_schema()
+    result = mojap_metadata.Metadata.to_dlt_schema(input_schema)
 
     # assert type conversion
     assert result["tables"]["test_table"]["columns"]["id"]["type"] == "bigint"
@@ -100,6 +104,7 @@ def test_empty_columns():
     }
 
     # run the conversion and assert the result matches expected output
-    metadata = Metadata.from_dict(input_schema)
-    result = metadata.to_dlt_schema()
+    #metadata = Metadata.from_dict(input_schema)
+    #result = metadata.to_dlt_schema()
+    result = mojap_metadata.Metadata.to_dlt_schema(input_schema)
     assert result == expected_output
