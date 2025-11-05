@@ -47,16 +47,29 @@ def convert_metadata_to_dlt(md : mojap_metadata.Metadata) -> dict:
                 columns[name][key] = field[key]
     
     # construct the final DLT schema dictionary
+    return construct_yaml(md.name,columns)
+
+
+def construct_yaml(name,columns) -> dict:
+    """
+    Consructs the final DLT-compatible schema string
+    """
+
     return {
-        "name": md.name,
+        "name": name,
         "tables": {
-            md.name: {
+            name: {
                 "columns": columns,          # include converted column definitions
-                "resource": md.name   # rsource name matches original schema name
+                "resource": name   # rsource name matches original schema name
             }
         }
     }
 
+
 def dlt_to_yaml(schema:dict,filepath:str,mode:str = "w"):
-        with open(filepath,mode) as f:
-            yaml.safe_dump(schema,f)
+    """
+    Saves the final DLT-compatible schema to a YAML file in a deaignated location. 
+    """
+
+    with open(filepath,mode) as f:
+        yaml.safe_dump(schema,f)
