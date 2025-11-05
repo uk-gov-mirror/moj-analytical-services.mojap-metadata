@@ -1,5 +1,3 @@
-import pytest
-import mojap_metadata
 from mojap_metadata.metadata.metadata import Metadata
 import mojap_metadata.converters.dlt_converter as dlt_convert
 
