@@ -3,6 +3,7 @@ import mojap_metadata.converters.dlt_converter as dlt_convert
 
 # test 1: basic type conversion from MOJAP to DLT types
 
+
 def test_basic_conversion():
     # input schema with known MOJAP types
     input_schema = {
