@@ -58,7 +58,7 @@ def test_unknown_type_defaults_to_text(capfd):
 
     # capture printed output and check for warning message
     out, _ = capfd.readouterr()
-    assert "type : custom_type not found in type map" in out
+    assert "unknown type custom_type, defaulting to text" in out
 
 
 # test 3: extra fields in column definitions should be preserved
