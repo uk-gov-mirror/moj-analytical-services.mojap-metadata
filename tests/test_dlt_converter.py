@@ -79,12 +79,14 @@ def test_preserves_extra_fields():
     input_mojap_md = Metadata.from_dict(input_schema)
     result = dlt_convert.convert_metadata_to_dlt(input_mojap_md)
 
+    id_val = result["tables"]["test_table"]["columns"]["id"] 
+
     # assert type conversion
-    assert result["tables"]["test_table"]["columns"]["id"]["type"] == "bigint"
+    assert id_val["type"] == "bigint"
 
     # assert extra fields are preserved
-    assert result["tables"]["test_table"]["columns"]["id"]["nullable"] is False
-    assert result["tables"]["test_table"]["columns"]["id"]["description"] == "Primary key"
+    assert id_val["nullable"] is False
+    assert id_val["description"] == "Primary key"
 
 
 # test 4: schema with no columns should return an empty columns dict
