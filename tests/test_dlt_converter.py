@@ -79,7 +79,7 @@ def test_preserves_extra_fields():
     input_mojap_md = Metadata.from_dict(input_schema)
     result = dlt_convert.convert_metadata_to_dlt(input_mojap_md)
 
-    id_val = result["tables"]["test_table"]["columns"]["id"] 
+    id_val = result["tables"]["test_table"]["columns"]["id"]
 
     # assert type conversion
     assert id_val["type"] == "bigint"

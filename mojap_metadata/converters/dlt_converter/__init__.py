@@ -20,6 +20,7 @@ type_mapping = {
     "bool": "bool"
 }
 
+
 def convert_metadata_to_dlt(md : mojap_metadata.Metadata) -> dict:
     """
     Converts a MOJAP schema directly to a DLT-compatible schema dictionary.
@@ -37,7 +38,7 @@ def convert_metadata_to_dlt(md : mojap_metadata.Metadata) -> dict:
                 columns[name] = {}
             elif key == 'type':
 
-                columns[name][key] = type_mapping.get(field[key])   
+                columns[name][key] = type_mapping.get(field[key])
                 if columns[name][key] is None:
                     print(f"unknown type {field[key]}, defaulting to text")
                     columns[name][key] = 'text'
@@ -46,6 +47,7 @@ def convert_metadata_to_dlt(md : mojap_metadata.Metadata) -> dict:
 
     # construct the final DLT schema dictionary
     return _construct_yaml(md.name, columns)
+
 
 def _construct_yaml(name, columns) -> dict:
     """
