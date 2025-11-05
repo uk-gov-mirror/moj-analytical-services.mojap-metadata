@@ -48,7 +48,7 @@ def test_unknown_type_defaults_to_text(capfd):
 
     # run the conversion and assert the result matches expected output
     input_mojap_md = Metadata.from_dict(input_schema)
-    # intentionaly introducing and invalid mojap metadata type for this test case. 
+    # intentionaly introducing and invalid mojap metadata type for this test case.
     input_mojap_md.columns[0]["type"] = 'custom_type'
     result = dlt_convert.convert_metadata_to_dlt(input_mojap_md)
 
@@ -66,7 +66,12 @@ def test_preserves_extra_fields():
     input_schema = {
         "name": "test_table",
         "columns": [
-            {"name": "id", "type": "int64", "nullable": False, "description": "Primary key"}
+            {
+                "name": "id",
+                "type": "int64",
+                "nullable": False,
+                "description": "Primary key"
+            }
         ]
     }
 
